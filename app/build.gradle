@@ -1,0 +1,15 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setAppDefaultConfig project
+
+android {
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //    kapt "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+    if (!isMoudle.toBoolean()) {
+        implementation project(':common')
+    } else {
+        implementation project(':common')
+    }
+}

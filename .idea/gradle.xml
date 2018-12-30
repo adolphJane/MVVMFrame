@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/advanced_utils" />
+            <option value="$PROJECT_DIR$/advanced_widgets" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base_libs" />
+            <option value="$PROJECT_DIR$/base_model" />
+            <option value="$PROJECT_DIR$/base_router" />
+            <option value="$PROJECT_DIR$/base_tools" />
+            <option value="$PROJECT_DIR$/base_utils" />
+            <option value="$PROJECT_DIR$/base_widgets" />
+            <option value="$PROJECT_DIR$/common" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
