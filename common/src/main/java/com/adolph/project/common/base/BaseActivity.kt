@@ -1,15 +1,22 @@
 package com.adolph.project.common.base
 
-import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import com.adolph.project.baseutils.AppSystemBarMgr
+import com.adolph.project.baseutils.KeyboardUtils
+import com.adolph.project.baseutils.ToastUtils
+import com.adolph.project.basewidgets.HeaderView
+import com.adolph.project.common.R
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 import java.lang.reflect.ParameterizedType
 
@@ -17,6 +24,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
     protected lateinit var binding: V
     protected var viewModel: VM? = null
     protected var dialog: AlertDialog? = null
+    private var mLastClickTime: Long = 0
+    private val CLICK_TIME = 1500
     @get:LayoutRes
     protected abstract val layoutId: Int
 
@@ -28,6 +37,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
         initViewDataBinding(savedInstanceState)
         //私有的ViewModel与View的契约事件回调逻辑
         registorUIChangeLiveDataCallBack()
+        //页面视图初始化方法
+        initView()
         //页面数据初始化方法
         initData()
         //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
@@ -69,6 +80,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
             //注入RxLifecycle生命周期
             it.injectLifecycleProvider(this)
         }
+        setBackButton()
     }
 
     /**
@@ -140,6 +152,10 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
         return null
     }
 
+    override fun initView() {
+
+    }
+
     override fun initData() {
 
     }
@@ -157,5 +173,43 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
     </T> */
     fun <T : ViewModel> createViewModel(activity: FragmentActivity, cls: Class<T>): T {
         return ViewModelProviders.of(activity).get(cls)
+    }
+
+    /**
+     * 检测双击
+     */
+    protected fun vertifyClickTime(): Boolean {
+        if (System.currentTimeMillis() - mLastClickTime > CLICK_TIME) {
+            mLastClickTime = System.currentTimeMillis()
+            return true
+        }
+        return false
+    }
+
+    fun setStatusBar() {
+        if (this is BaseActivity) {
+            //注意替换BaseActivity为需要显示沉浸式图片的Activity
+            AppSystemBarMgr.setTranslucentForImageView(this,null)
+        } else {
+            AppSystemBarMgr.setColorNoTranslucent(this, ContextCompat.getColor(this, R.color.white1))
+        }
+        AppSystemBarMgr.setAndroidNativeLightStatusBar(this,true)
+    }
+
+    fun hideInputMethod() {
+        KeyboardUtils.hideSoftInput(this)
+    }
+
+    private fun setBackButton() {
+        val header = findViewById<HeaderView?>(R.id.header_view)
+        header?.let {
+            it.setBackListener(View.OnClickListener {
+                finish()
+            })
+        }
+    }
+
+    fun showToast(content: String) {
+        ToastUtils.showShort(content)
     }
 }

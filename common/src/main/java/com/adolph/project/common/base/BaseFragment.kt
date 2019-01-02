@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import com.adolph.project.baseutils.ToastUtils
 import com.trello.rxlifecycle3.components.support.RxFragment
 import java.lang.reflect.ParameterizedType
 
@@ -197,6 +198,12 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : RxFragment
     }
 
     override fun onBackPressed() {
+    }
+
+    protected fun showToast(content: String?) {
+        if (content?.isNotEmpty() == true) {
+            ToastUtils.showShort(content)
+        }
     }
 
     /**

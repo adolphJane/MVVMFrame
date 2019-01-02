@@ -21,7 +21,6 @@ dependencies {
     api rootProject.ext.support.cardview
     api rootProject.ext.support.kotlin
     api rootProject.ext.support.multidex
-    kapt rootProject.ext.support.databinding
 
     //rxjava
     api rootProject.ext.dependencies.rxjava

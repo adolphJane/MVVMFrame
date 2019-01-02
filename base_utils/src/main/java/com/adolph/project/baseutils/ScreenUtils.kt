@@ -93,17 +93,6 @@ object ScreenUtils {
         return statusBarHeight
     }
 
-    fun setAndroidNativeLightStatusBar(activity: FragmentActivity, dark: Boolean) {
-        val decor = activity.window.decorView
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (dark) {
-                decor.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            } else {
-                decor.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            }
-        }
-    }
-
     /**
      * 获取屏幕密度
      *

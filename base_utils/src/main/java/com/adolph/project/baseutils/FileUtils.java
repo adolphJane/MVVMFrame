@@ -542,7 +542,6 @@ public final class FileUtils {
      * 删除文件或目录
      *
      * @param file The file.
-     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean delete(final File file) {
         if (file == null) return false;

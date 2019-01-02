@@ -1,0 +1,23 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setLibDefaultConfig project
+
+android {
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(':base_utils')
+    //gson
+    api rootProject.ext.dependencies.gson
+
+    //retrofit
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies.retrofitGson
+    api rootProject.ext.dependencies.retrofitRxjava
+
+    //okhttp3
+    api rootProject.ext.dependencies.okhttp
+    api rootProject.ext.dependencies.okhttpLogging
+}
