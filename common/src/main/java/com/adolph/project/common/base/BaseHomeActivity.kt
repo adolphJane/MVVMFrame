@@ -82,7 +82,7 @@ abstract class BaseHomeActivity<V : ViewDataBinding, VM : BaseViewModel> : BaseA
         }.firstOrNull()?.fragmentName
 
         className?.let {
-            fragment = Class.forName(className) as Fragment
+            fragment = Class.forName(className).newInstance() as Fragment
         }
     }
 
