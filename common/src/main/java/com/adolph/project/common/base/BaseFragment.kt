@@ -68,12 +68,10 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : RxFragment
             viewModel = createViewModel(this, modelClass) as VM
         }
 
-        viewModel?.let {
-            //让ViewModel拥有View的生命周期感应
-            lifecycle.addObserver(it)
-            //注入RxLifecycle生命周期
-            it.injectLifecycleProvider(this)
-        }
+        initView()
+
+        binding.lifecycleOwner = this
+        viewModel?.setLifecycle(lifecycle)
         return binding.root
     }
 
@@ -166,19 +164,9 @@ abstract class BaseFragment<V : ViewDataBinding,VM : BaseViewModel> : RxFragment
 
     }
 
-    /**
-     * 初始化根布局
-     *
-     * @return 布局layout的id
-     */
-    abstract fun initContentView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): Int
+    override fun initView() {
 
-    /**
-     * 初始化ViewModel的id
-     *
-     * @return BR的id
-     */
-    abstract fun initVariableId(): Int
+    }
 
     /**
      * 初始化ViewModel

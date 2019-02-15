@@ -7,6 +7,11 @@ interface IBaseFragment {
     fun initParam()
 
     /**
+     * 初始化界面
+     */
+    fun initView()
+
+    /**
      * 初始化数据
      */
     fun initData()

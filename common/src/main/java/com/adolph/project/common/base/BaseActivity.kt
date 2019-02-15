@@ -73,13 +73,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel> : RxAppComp
             }
             viewModel = createViewModel(this, modelClass) as VM
         }
-        binding.setLifecycleOwner(this)
-        viewModel?.let {
-            //让ViewModel拥有View的生命周期感应
-            lifecycle.addObserver(it)
-            //注入RxLifecycle生命周期
-            it.injectLifecycleProvider(this)
-        }
+        binding.lifecycleOwner = this
+        viewModel?.setLifecycle(lifecycle)
         setBackButton()
     }
 

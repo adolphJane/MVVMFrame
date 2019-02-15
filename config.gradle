@@ -10,7 +10,7 @@ ext {
     ]
     versions = [
             "appcompatVersion" : '1.0.0',
-            "constraintVersion" : '1.1.3',
+            "constraintVersion" : '1.1.2',
             "leakcanaryVersion" : '1.5.4',
             "buglyVersion" : '2.6.6',
             "buglyNativeVersion" : '3.3.1',
@@ -33,7 +33,7 @@ ext {
 
 
     support = [
-            "constraint"              : "androidx.constraint:constraint-layout:$versions.constraintVersion",
+            "constraint"              : "androidx.constraintlayout:constraintlayout:$versions.constraintVersion",
             "material"                : "com.google.android.material:material:$versions.appcompatVersion",
             "support_v4"              : "androidx.legacy:legacy-support-v4:$versions.appcompatVersion",
             "appcompat"               : "androidx.appcompat:appcompat:$versions.appcompatVersion",

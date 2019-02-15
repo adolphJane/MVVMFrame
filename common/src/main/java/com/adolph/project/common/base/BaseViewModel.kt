@@ -9,7 +9,7 @@ import com.adolph.project.baseutils.ToastUtils
 import com.trello.rxlifecycle3.LifecycleProvider
 
 open class BaseViewModel(application: Application) : AndroidViewModel(application), IBaseViewModel {
-    private lateinit var lifecycle: LifecycleProvider<*>
+    private lateinit var lifecycle: Lifecycle
     private var uc: UIChangeLiveData
 
     init {
@@ -20,12 +20,13 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
      *
      * @param lifecycle
      */
-    fun injectLifecycleProvider(lifecycle: LifecycleProvider<*>) {
+    fun setLifecycle(lifecycle: Lifecycle) {
         this.lifecycle = lifecycle
+        this.lifecycle.addObserver(this)
     }
 
-    fun getLifecycleProvider(): LifecycleProvider<*> {
-        return lifecycle
+    fun removeLifecycle() {
+        this.lifecycle.removeObserver(this)
     }
 
     fun getUc() : UIChangeLiveData {
@@ -63,7 +64,9 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     override fun showToast(content: String) {
-        ToastUtils.showShort(content)
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+            ToastUtils.showShort(content)
+        }
     }
 
     class UIChangeLiveData {
