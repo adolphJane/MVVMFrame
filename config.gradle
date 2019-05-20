@@ -4,7 +4,7 @@ ext {
             targetSdkVersion : 28,
             minSdkVersion    : 19,
             buildToolsVersion: '28.0.3',
-            applicationId    : 'com.adolph.project.mvvmframe',
+            applicationId    : 'com.magicalrice.project.mvvmframe',
             versionCode      : 1,
             versionName      : "1.0",
     ]
@@ -25,10 +25,13 @@ ext {
             "retrofitVersion" : '2.3.0',
             "okhttpVersion" : '3.9.1',
             "multidexVersion" : "2.0.0",
-            "junitVersion" : "4.12",
+            "junitVersion" : "1.1.0",
             "runnerVersion" : "1.1.0",
             "espressoVersion" : "3.1.0",
-            "rxlifecycleVersion" : "3.0.0"
+            "rxlifecycleVersion" : "3.0.0",
+            "lubanVersion" : "1.1.8",
+            "jPushVersion" : "3.1.7",
+            "jCoreVersion" : "1.2.6",
     ]
 
 
@@ -43,7 +46,7 @@ ext {
             "multidex"                : "androidx.multidex:multidex:$versions.multidexVersion",
             "kotlin"                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin_version",
             "databinding"             : "com.android.databinding:compiler:$rootProject.ext.gradle_version",
-            "junit"                   : "junit:junit:$versions.junitVersion",
+            "junit"                   : "androidx.test.ext:junit:$versions.junitVersion",
             "runner"                  : "androidx.test:runner:$versions.runnerVersion",
             "espresso"                : "androidx.test.espresso:espresso-core:$versions.espressoVersion"
     ]
@@ -72,6 +75,9 @@ ext {
             "glideCompiler"            : "com.github.bumptech.glide:compiler:$versions.glideVersion",
             "rxlifecycle"              : "com.trello.rxlifecycle3:rxlifecycle-kotlin:$versions.rxlifecycleVersion",
             "rxlifecycleAndroid"       : "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:$versions.rxlifecycleVersion",
-            "rxlifecycleComponents"    : "com.trello.rxlifecycle3:rxlifecycle-components:$versions.rxlifecycleVersion"
+            "rxlifecycleComponents"    : "com.trello.rxlifecycle3:rxlifecycle-components:$versions.rxlifecycleVersion",
+            "luban"                    : "top.zibin:Luban:$versions.lubanVersion",
+            "jpush"                    : "cn.jiguang.sdk:jpush:$versions.jPushVersion",
+            "jcore"                    : "cn.jiguang.sdk:jcore:$versions.jCoreVersion",
     ]
 }

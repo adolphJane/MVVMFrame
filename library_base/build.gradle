@@ -1,0 +1,50 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setLibDefaultConfig project
+
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    api rootProject.ext.support.material
+    api rootProject.ext.support.support_v4
+    api rootProject.ext.support.appcompat
+    api rootProject.ext.support.animated_vector_drawable
+    api rootProject.ext.support.support_media_compat
+    api rootProject.ext.support.cardview
+    api rootProject.ext.support.kotlin
+    api rootProject.ext.support.multidex
+
+    //rxjava
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+
+    //arch
+    api rootProject.ext.dependencies.archRuntime
+    api rootProject.ext.dependencies.archExtensions
+    kapt rootProject.ext.dependencies.archCompiler
+
+    //rxlifecycle
+    api rootProject.ext.dependencies.rxlifecycle
+    api rootProject.ext.dependencies.rxlifecycleAndroid
+    api rootProject.ext.dependencies.rxlifecycleComponents
+}
+
+publish {
+    artifactId = 'base'
+    uploadName = 'Base'
+    repoName = rootProject.repoName
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    publishVersion = rootProject.publishVersion
+    desc = rootProject.desc
+    licences = rootProject.licences
+    website = rootProject.website
+}

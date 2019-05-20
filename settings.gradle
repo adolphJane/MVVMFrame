@@ -1,1 +1,1 @@
-include ':app', ':base_utils', ':common', ':advanced_utils', ':base_libs', ':base_tools', ':base_widgets', ':advanced_widgets', ':base_models', ':base_router'
+include ':app', ':library_base', ':library_data', ':library_third_external', ':library_widget', ':library_common'

@@ -1,0 +1,43 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setLibDefaultConfig project
+
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    defaultConfig {
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    kapt rootProject.ext.support.databinding
+
+    api project(':library_data')
+    api project(':library_widget')
+}
+
+publish {
+    artifactId = 'common'
+    uploadName = 'Common'
+    repoName = rootProject.repoName
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    publishVersion = rootProject.publishVersion
+    desc = rootProject.desc
+    licences = rootProject.licences
+    website = rootProject.website
+}

@@ -1,0 +1,38 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setLibDefaultConfig project
+
+android {
+    defaultConfig {
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(':library_base')
+
+    //debug_view
+    debugApi rootProject.ext.dependencies.debugView
+    releaseApi rootProject.ext.dependencies.debugViewRelease
+    testImplementation rootProject.ext.dependencies.debugViewTest
+
+    //leakcary
+    debugApi rootProject.ext.dependencies.leakcanary
+    releaseApi rootProject.ext.dependencies.leakcanaryRelease
+
+    //arouter
+    api rootProject.ext.dependencies.arouter
+    kapt rootProject.ext.dependencies.arouterCompiler
+
+    //compress
+    api rootProject.ext.dependencies.luban
+
+    //jpush
+    api rootProject.ext.dependencies.jpush
+    api rootProject.ext.dependencies.jcore
+}

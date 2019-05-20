@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white1">
+
+    <TextView
+        android:id="@+id/tv_error_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading_fail"
+        android:drawableTop="@drawable/ic_failtoload"
+        android:textSize="16sp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="20dp" />
+
+    <TextView
+        android:id="@+id/tv_error_button"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:text="@string/reloading"
+        android:textColor="@color/white1"
+        android:gravity="center"
+        android:layout_below="@id/tv_error_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/shape_50dp_rect_blue1"
+        android:textSize="16sp" />
+</RelativeLayout>

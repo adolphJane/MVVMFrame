@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--White-->
+    <color name="transparent">#00000000</color>
+    <color name="white1">#FFFFFF</color>
+    <color name="white2">#CCFFFFFF</color>
+    <color name="white3">#99FFFFFF</color>
+    <color name="white4">#40FFFFFF</color>
+    <!--Black-->
+    <color name="black1">#333333</color>
+    <color name="black2">#4D000000</color>
+    <color name="black3">#05000000</color>
+    <color name="black4">#99333333</color>
+    <color name="black5">#CC333333</color>
+    <color name="black6">#CC000000</color>
+    <color name="black7">#E6000000</color>
+    <color name="black8">#99000000</color>
+    <color name="black9">#54000000</color>
+    <color name="black10">#66000000</color>
+    <!--Red-->
+    <color name="red1">#E22539</color>
+    <!--Gray-->
+    <color name="gray1">#666666</color>
+    <color name="gray2">#999999</color>
+    <color name="gray3">#E5E5E5</color>
+    <color name="gray4">#F5F5F9</color>
+    <color name="gray5">#F2F2F2</color>
+    <color name="gray6">#CCCCCC</color>
+    <color name="gray7">#E0E0E0</color>
+    <color name="gray8">#D0D5DC</color>
+    <color name="gray9">#08000000</color>
+    <!--Orange-->
+    <color name="orange1">#FD6E36</color>
+    <!--Yellow-->
+    <color name="yellow1">#FDCA40</color>
+    <!--Blue-->
+    <color name="blue1">#2D8BFB</color>
+    <color name="blue2">#3093FB</color>
+    <color name="blue3">#2AC3FB</color>
+    <color name="blue4">#30A7FB</color>
+    <color name="blue5">#D7E9FF</color>
+    <!--Green-->
+    <color name="green1">#13CE66</color>
+    <color name="green2">#3BA91E</color>
+    <!--Pink-->
+    <color name="pink1">#FFE9E0</color>
+</resources>

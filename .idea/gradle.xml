@@ -8,16 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/advanced_utils" />
-            <option value="$PROJECT_DIR$/advanced_widgets" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/base_libs" />
-            <option value="$PROJECT_DIR$/base_models" />
-            <option value="$PROJECT_DIR$/base_router" />
-            <option value="$PROJECT_DIR$/base_tools" />
-            <option value="$PROJECT_DIR$/base_utils" />
-            <option value="$PROJECT_DIR$/base_widgets" />
-            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/library_base" />
+            <option value="$PROJECT_DIR$/library_common" />
+            <option value="$PROJECT_DIR$/library_data" />
+            <option value="$PROJECT_DIR$/library_third_external" />
+            <option value="$PROJECT_DIR$/library_widget" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

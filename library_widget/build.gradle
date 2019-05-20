@@ -1,0 +1,19 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setLibDefaultConfig project
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(':library_base')
+
+    //glide
+    api rootProject.ext.dependencies.glide
+    api rootProject.ext.dependencies.glideOkhttp
+    kapt rootProject.ext.dependencies.glideCompiler
+}

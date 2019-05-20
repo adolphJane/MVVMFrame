@@ -2,11 +2,12 @@ project.ext {
     setAppDefaultConfig = {
         extension ->
             extension.apply plugin: 'com.android.application'
-            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android'
+            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android-extensions'
             extension.description "app"
             setAndroidConfig extension.android
+            setModuleDependencies extension.dependencies
     }
 
     setModuleDefaultConfig = {
@@ -16,37 +17,63 @@ project.ext {
             } else {
                 extension.apply plugin: 'com.android.library'
             }
-            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android'
+            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android-extensions'
             extension.description "module"
-            setAndroidConfig extension.android
-
-            extension.android.sourceSets {
-                main {
-                    if (isMoudle.toBoolean()) {
-                        manifest.srcFile 'src/main/AndroidManifest.xml'
-                    } else {
-                        manifest.srcFile 'src/main/release/AndroidManifest.xml'
-                        java {
-                            exclude 'debug/**'
-                        }
-                    }
-                }
-            }
+            setModuleConfig extension.android
+            setModuleDependencies extension.dependencies
     }
 
     setLibDefaultConfig = {
         extension ->
             extension.apply plugin: 'com.android.library'
-            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android'
+            extension.apply plugin: 'kotlin-kapt'
             extension.apply plugin: 'kotlin-android-extensions'
             extension.description "lib"
             setLibAndroidConfig extension.android
+            setLibDependencies extension.dependencies
     }
 
     setAndroidConfig = {
+        extension ->
+            extension.compileSdkVersion = rootProject.ext.android.compileSdkVersion
+            extension.buildToolsVersion = rootProject.ext.android.buildToolsVersion
+            extension.defaultConfig {
+                applicationId rootProject.ext.android.applicationId
+                minSdkVersion rootProject.ext.android.minSdkVersion
+                targetSdkVersion rootProject.ext.android.targetSdkVersion
+                versionCode rootProject.ext.android.versionCode
+                versionName rootProject.ext.android.versionName
+
+                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+                kapt {
+                    arguments {
+                        arg("AROUTER_MODULE_NAME", project.getName())
+                    }
+                }
+            }
+
+            extension.buildTypes {
+                release {
+                    minifyEnabled false
+                    proguardFiles extension.getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                }
+            }
+
+            extension.dataBinding {
+                enabled = true
+            }
+
+            extension.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+    }
+
+    setModuleConfig = {
         extension ->
             extension.compileSdkVersion = rootProject.ext.android.compileSdkVersion
             extension.buildToolsVersion = rootProject.ext.android.buildToolsVersion
@@ -61,6 +88,19 @@ project.ext {
                 kapt {
                     arguments {
                         arg("AROUTER_MODULE_NAME", project.getName())
+                    }
+                }
+            }
+
+            extension.sourceSets {
+                main {
+                    if (isMoudle.toBoolean()) {
+                        manifest.srcFile 'src/main/AndroidManifest.xml'
+                    } else {
+                        manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                        java {
+                            exclude 'debug/**'
+                        }
                     }
                 }
             }
@@ -93,12 +133,6 @@ project.ext {
                 versionName rootProject.ext.android.versionName
 
                 testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-                kapt {
-                    arguments {
-                        arg("AROUTER_MODULE_NAME", project.getName())
-                    }
-                }
             }
 
             extension.buildTypes {
@@ -112,5 +146,19 @@ project.ext {
                 sourceCompatibility JavaVersion.VERSION_1_8
                 targetCompatibility JavaVersion.VERSION_1_8
             }
+    }
+
+    setModuleDependencies = {
+        extension ->
+            extension.testImplementation rootProject.ext.support.junit
+            extension.androidTestImplementation rootProject.ext.support.runner
+            extension.androidTestImplementation rootProject.ext.support.espresso
+    }
+
+    setLibDependencies = {
+        extension ->
+            extension.testImplementation rootProject.ext.support.junit
+            extension.androidTestImplementation rootProject.ext.support.runner
+            extension.androidTestImplementation rootProject.ext.support.espresso
     }
 }

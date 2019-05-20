@@ -2,14 +2,32 @@ apply from: "${rootProject.rootDir}/common_config.gradle"
 project.ext.setAppDefaultConfig project
 
 android {
+    defaultConfig {
+        ndk {
+            abiFilters 'armeabi'
+        }
+
+        flavorDimensions "company"
+    }
+
+    productFlavors {
+        guanfang {
+            dimension "company"
+            applicationId = rootProject.ext.android.applicationId
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: "com.ixiye.project.paydayloan",
+                    JPUSH_APPKEY : "6fe059c00e4af23969122522", //JPush 上注册的包名对应的 Appkey.
+                    JPUSH_CHANNEL: "guanfang", //暂时填写默认值即可.
+            ]
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //    kapt "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
-    if (!isMoudle.toBoolean()) {
-        implementation project(':common')
+    if (isMoudle.toBoolean()) {
+        implementation project(':library_common')
     } else {
-        implementation project(':common')
+        implementation project(':library_common')
     }
 }
